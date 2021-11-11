@@ -9,15 +9,16 @@
     "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
   },
   "repository": {
+    
     "type": "git",
-    "url": "git+https://github.com/basir/amazona.git"
+    "url": "git+https://github.com/fbate12345/adozen-video.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/basir/amazona/issues"
+    "url": "https://github.com/fbate12345/adozen-video/issues"
   },
-  "homepage": "https://github.com/basir/amazona#readme",
+  "homepage": "https://github.com/fbate12345/adozen-video#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
