@@ -15,11 +15,37 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.MONGODB_URL || '', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+// mongoose.connect(process.env.MONGODB_URL  {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useCreateIndex: true,
+// });
+const start = async () => {
+    
+  if (!process.env.MONGODB_URL) {
+      throw new Error('auth DB_URI must be defined');
+  }
+  try {
+      await mongoose.connect(process.env.MONGODB_URL, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useCreateIndex: true,
+      });
+      console.log('Server connected to MongoDb!');
+  } catch (err) {
+      // throw new DbConnectionError();
+      console.error(err);
+  }
+
+  // const PORT = process.env.SERVER_PORT;
+  // app.listen(PORT, () => {
+  //     console.log(`Server is listening on ${PORT}!!!!!!!!!`);
+  // });
+};
+
+
+
+
 app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
@@ -125,3 +151,5 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Serve at http://localhost:${port}`);
 });
+
+start();
